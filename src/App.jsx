@@ -17,51 +17,7 @@ function App() {
 
   // HINT: These will be regular JavaScript functions defined inside App component
   // Example from Week 6:
-  //   const filterProjects = (category) => {
-  //     // Your filtering logic here
-  //   }
-
-  const filterProjects = (category) => {
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          // Remove active class from all buttons
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-  
-          // Add active class to clicked button
-          button.classList.add('active');
-  
-          // Get filter value from data-filter attribute
-          const filterValue = button.getAttribute('data-filter');
-  
-          // Filter projects
-          filterProjects(filterValue);
-      });
-  });
-    filterProjects(category) {
-      projectCards.forEach(card => {
-          const cardCategory = card.getAttribute('data-category');
-  
-          if (category === 'all' || cardCategory === category) {
-              // Show matching cards with fade-in effect
-              card.style.display = 'block';
-              setTimeout(() => {
-                  card.style.opacity = '1';
-                  card.style.transform = 'scale(1)';
-              }, 10);
-          } else {
-              // Hide non-matching cards with fade-out effect
-              card.style.opacity = '0';
-              card.style.transform = 'scale(0.9)';
-              setTimeout(() => {
-                  card.style.display = 'none';
-              }, 300);
-          }
-      });
-  }
-  }
-  
-
-  // TODO: Add smooth scroll handler
+  //   // TODO: Add smooth scroll handler
   // Replace: navLinks.forEach(link => link.addEventListener('click', ...))
   // With: const handleNavClick = (e) => { ... }
 
@@ -127,6 +83,7 @@ function App() {
     const projectCards = document.querySelectorAll('.project-card');
 
     projectCards.forEach(card => {
+      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       const cardCategory = card.getAttribute('data-category');
 
       if (category === 'all' || cardCategory === category) {
@@ -143,12 +100,6 @@ function App() {
         setTimeout(() => {
           card.style.display = 'none';
         }, 300);
-
-        projectCards.forEach(card => {
-          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-          card.style.opacity = '1';
-          card.style.transform = 'scale(1)';
-      });
       }
     });
 
